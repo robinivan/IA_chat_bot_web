@@ -5,7 +5,7 @@ function LandingPage() {
   return (
     <div className="landing-page">
       <h2>Bienvenue sur notre landing page !</h2>
-      <p>C'est une page simple créée avec React.</p>
+      <p>C'est un page simple créée avec React.</p>
     </div>
   );
 }
