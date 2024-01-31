@@ -1,4 +1,4 @@
-// File: /Users/leonardbouzat/Desktop/Epitech /Année 4/IAbot/IA_chat_bot_web/app/layout.tsx
+// File: C:\Users\vanil\Desktop\IA_chat_bot_web\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
