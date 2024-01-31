@@ -1,7 +1,7 @@
 import VideoThumb from "@/public/images/hero-image.png";
 import ModalVideo from "@/components/modal-video";
 
-export default function Hero() {
+export default function Hero({ isOpen, setIsOpen }) {
   return (
     <section className="relative">
       {/* Illustration behind hero content */}
@@ -63,7 +63,11 @@ export default function Hero() {
                 data-aos="zoom-y-out"
                 data-aos-delay="300"
               >
-                <div>
+                <div
+                  onClick={() => {
+                    setIsOpen(true);
+                  }}
+                >
                   <a
                     className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
                     href="#0"
