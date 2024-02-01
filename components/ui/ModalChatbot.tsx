@@ -1,34 +1,50 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Modal, Input, Button, Space } from "antd";
 import getdata from "./ChatbotData";
 import MessageElement from "@/components/ui/MessageElement";
+import MessageElementMap from "@/components/ui/MessageElementMap";
 
 const ModalChatbot = ({ isOpen, setIsOpen }) => {
-  const [userMessages, setUserMessages] = useState(getdata);
-  console.log(userMessages)
-  // const sendMessage = (userQuestion) => {
-  //   const chatbotResponse = getdata().find((item) =>
-  //     userQuestion.toLowerCase().includes(item.Message.toLowerCase())
-  //   );
-  //
-  //   if (chatbotResponse) {
-  //     const chatbotMessage =
-  //       chatbotResponse.User + ": " + chatbotResponse.Message;
-  //     console.log("Requête JSON:", chatbotResponse);
-  //     console.log("Réponse du Chatbot:", chatbotMessage);
-  //     setUserMessages([...userMessages, chatbotMessage]);
-  //   } else {
-  //     const chatbotMessage =
-  //       "Je suis désolé, je ne peux pas vous aider avec cela.";
-  //     setUserMessages([...userMessages, chatbotMessage]);
-  //   }
-  // };
+  const getMessagesFromLocal = ()=>{
+    let temp = localStorage.getItem("exchange")
+    console.log(temp)
+    if (temp){
+      console.log(JSON.parse(temp))
+
+      return JSON.parse(temp)
+
+    } else {
+      return []
+    }
+  }
+  const [userMessages, setUserMessages] = useState(getMessagesFromLocal);
+  const [question, setQuestion] = useState(null);
+  const [state, setState]=useState(false)
+
+  useEffect(() => {
+    if(state){
+      setState(false)
+      sendMessage();
+      emptyInput()
+    }
+  }, [state])
+
+  const emptyInput = () => {
+    setQuestion(null)
+  }
+  const sendMessage = () => {
+    if (question) {
+      let temp = userMessages
+      temp.push({"User": "User", "Message": question})
+      setUserMessages(temp)
+      console.log(temp)
+      localStorage.setItem("exchange", JSON.stringify(temp));
+    }
+  };
 
   const handleInputChange = (e) => {
-    if (e.key === "Enter") {
-      sendMessage(e.target.value);
-      e.target.value = "";
-    }
+    setQuestion(e);
+    console.log(e)
   };
 
   return (
@@ -44,22 +60,19 @@ const ModalChatbot = ({ isOpen, setIsOpen }) => {
       >
         {/*<div className="bot-message">Bienvenue ! Posez-moi vos questions.</div>*/}
         <div className="Modalwindowbody">
-          <div className="messageblock">
-            {userMessages.map(userMessage => (
-              <MessageElement message={userMessage}/>
-            ))}
-          </div>
+          <MessageElementMap messages={userMessages}/>
           <div className="inputblock">
             <Space.Compact style={{ width: "100%" }}>
               <Input
-                defaultValue="Posez votre question ici"
-                className="inputstyles"
-                onKeyPress={handleInputChange}
+                  onChange={(e)=>{setQuestion(e.target.value)}}
+                  placeholder='Poser votre question'
+                  className="inputstyles"
+                  value={question}
               />
               <Button
                 type="primary"
                 className="inputbutton"
-                // onClick={() => sendMessage("Posez votre question ici")}
+                onClick={() => setState(true)}
               >
                 Envoyer
               </Button>
