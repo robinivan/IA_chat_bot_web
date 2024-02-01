@@ -220,6 +220,10 @@ html {
   display: flex;
   width: 100%;
   height: 90%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: scroll;
 }
 
 .inputblock {
@@ -253,6 +257,32 @@ html {
   max-width: 70%;
   align-self: flex-end;
 }
+
+.user-message-2 {
+  background-color: #0a82b6; /* Vert */
+  color: white;
+  border-radius: 20px;
+  padding: 8px;
+  margin-bottom: 8px;
+  max-width: 70%;
+  align-self: flex-end;
+  display: flex;
+  height: fit-content;
+
+}
+.bot-message-2 {
+  background-color: #4caf50; /* Vert */
+  color: white;
+  border-radius: 20px;
+  padding: 8px;
+  margin-bottom: 8px;
+  max-width: 70%;
+  align-self: flex-start;
+  display: flex;
+  height: fit-content;
+
+}
+
 
 /* Style des messages du chatbot */
 .bot-message {

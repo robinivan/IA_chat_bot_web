@@ -1,27 +1,28 @@
 import React, { useState } from "react";
 import { Modal, Input, Button, Space } from "antd";
 import getdata from "./ChatbotData";
+import MessageElement from "@/components/ui/MessageElement";
 
 const ModalChatbot = ({ isOpen, setIsOpen }) => {
-  const [userMessages, setUserMessages] = useState([]);
-
-  const sendMessage = (userQuestion) => {
-    const chatbotResponse = getdata().find((item) =>
-      userQuestion.toLowerCase().includes(item.Message.toLowerCase())
-    );
-
-    if (chatbotResponse) {
-      const chatbotMessage =
-        chatbotResponse.User + ": " + chatbotResponse.Message;
-      console.log("Requête JSON:", chatbotResponse);
-      console.log("Réponse du Chatbot:", chatbotMessage);
-      setUserMessages([...userMessages, chatbotMessage]);
-    } else {
-      const chatbotMessage =
-        "Je suis désolé, je ne peux pas vous aider avec cela.";
-      setUserMessages([...userMessages, chatbotMessage]);
-    }
-  };
+  const [userMessages, setUserMessages] = useState(getdata);
+  console.log(userMessages)
+  // const sendMessage = (userQuestion) => {
+  //   const chatbotResponse = getdata().find((item) =>
+  //     userQuestion.toLowerCase().includes(item.Message.toLowerCase())
+  //   );
+  //
+  //   if (chatbotResponse) {
+  //     const chatbotMessage =
+  //       chatbotResponse.User + ": " + chatbotResponse.Message;
+  //     console.log("Requête JSON:", chatbotResponse);
+  //     console.log("Réponse du Chatbot:", chatbotMessage);
+  //     setUserMessages([...userMessages, chatbotMessage]);
+  //   } else {
+  //     const chatbotMessage =
+  //       "Je suis désolé, je ne peux pas vous aider avec cela.";
+  //     setUserMessages([...userMessages, chatbotMessage]);
+  //   }
+  // };
 
   const handleInputChange = (e) => {
     if (e.key === "Enter") {
@@ -41,13 +42,11 @@ const ModalChatbot = ({ isOpen, setIsOpen }) => {
         onCancel={() => setIsOpen(false)}
         footer={null}
       >
-        <div className="bot-message">Bienvenue ! Posez-moi vos questions.</div>
+        {/*<div className="bot-message">Bienvenue ! Posez-moi vos questions.</div>*/}
         <div className="Modalwindowbody">
           <div className="messageblock">
-            {userMessages.map((message, index) => (
-              <div key={index} className="user-message">
-                {message}
-              </div>
+            {userMessages.map(userMessage => (
+              <MessageElement message={userMessage}/>
             ))}
           </div>
           <div className="inputblock">
@@ -60,7 +59,7 @@ const ModalChatbot = ({ isOpen, setIsOpen }) => {
               <Button
                 type="primary"
                 className="inputbutton"
-                onClick={() => sendMessage("Posez votre question ici")}
+                // onClick={() => sendMessage("Posez votre question ici")}
               >
                 Envoyer
               </Button>
