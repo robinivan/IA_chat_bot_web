@@ -36,7 +36,7 @@ export default function Hero({ isOpen, setIsOpen }) {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Hero content */}
+        {/* Hero conte */}
         <div className="pt-32 pb-12 md:pt-40 md:pb-20">
           {/* Section header */}
           <div className="text-center pb-12 md:pb-16">
