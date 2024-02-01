@@ -241,4 +241,51 @@ html {
   color: white;
 }
 
-  
+/* Style général du conteneur de la conversation */
+
+/* Style des messages de l'utilisateur */
+.user-message {
+  background-color: #4caf50; /* Vert */
+  color: white;
+  border-radius: 20px;
+  padding: 8px;
+  margin-bottom: 8px;
+  max-width: 70%;
+  align-self: flex-end;
+}
+
+/* Style des messages du chatbot */
+.bot-message {
+  background-color: #2196f3; /* Bleu */
+  color: white;
+  border-radius: 20px;
+  padding: 8px;
+  margin-bottom: 8px;
+  max-width: 70%;
+  align-self: flex-end;
+}
+
+/* Style de la zone de texte pour entrer un message */
+.input-box {
+  display: flex;
+  margin-top: 10px;
+}
+
+/* Style de la zone de texte */
+.text-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+/* Style du bouton d'envoi */
+.send-button {
+  background-color: #008cba; /* Bleu foncé */
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
