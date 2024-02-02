@@ -52,9 +52,9 @@ const ModalChatbot = ({isOpen, setIsOpen}: Props) => {
             }
         )
     }
-    const [userMessages, setUserMessages] = useState(getMessagesFromLocal);
-    const [question, setQuestion] = useState(null);
-    const [state, setState] = useState(false)
+    const [userMessages, setUserMessages] = useState<any>(getMessagesFromLocal);
+    const [question, setQuestion] = useState<any>(null);
+    const [state, setState] = useState<any>(false)
 
     useEffect(() => {
         if (state) {

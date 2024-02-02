@@ -9,7 +9,7 @@ import ModalChatbot from "@/components/ui/ModalChatbot";
 import { useState } from "react";
 
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<any>(false);
   return (
     <div>
       <Hero isOpen={isOpen} setIsOpen={setIsOpen} />
