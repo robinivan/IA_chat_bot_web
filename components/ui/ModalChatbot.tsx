@@ -27,7 +27,7 @@ const ModalChatbot = ({isOpen, setIsOpen}: Props) => {
         }
 
     }
-    const requestMessage = async (message) => {
+    const requestMessage = async (message: any) => {
         let url = 'https://ia-chat-bot-api.vercel.app/post-message';
         let headers = {
             'Accept': 'application/json',
@@ -78,10 +78,6 @@ const ModalChatbot = ({isOpen, setIsOpen}: Props) => {
         }
     };
 
-    const handleInputChange = (e) => {
-        setQuestion(e);
-        console.log(e)
-    };
 
     return (
         <>
