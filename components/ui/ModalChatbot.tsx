@@ -5,7 +5,11 @@ import MessageElement from "@/components/ui/MessageElement";
 import MessageElementMap from "@/components/ui/MessageElementMap";
 import axios from "axios";
 
-const ModalChatbot = ({isOpen, setIsOpen}) => {
+type Props = {
+    isOpen: boolean;
+    setIsOpen:(value: boolean) => void
+};
+const ModalChatbot = ({isOpen, setIsOpen}: Props) => {
     const getMessagesFromLocal = () => {
         if (typeof window !== 'undefined') {
             let temp = localStorage.getItem("exchange")
