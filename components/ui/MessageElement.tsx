@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 
 type Props = {
-    message: object;
+    message: {
+        User: string,
+        Message: string
+    };
 };
 export default function MessageElement({message}:Props){
     if (message?.User==="User"){
