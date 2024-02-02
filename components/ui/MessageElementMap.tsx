@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from "react";
 import MessageElement from "@/components/ui/MessageElement";
 
+interface message {
+    User: string,
+    Message: string
+}
 type Props = {
-    messages: object;
+    messages: message[];
 };
 export default function MessageElementMap({messages}:Props) {
     const MessageList = () => {
