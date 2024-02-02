@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-export default function MessageElement({message}){
+type Props = {
+    messages: object;
+};
+export default function MessageElement({message}:Props){
     if (message?.User==="User"){
         return (
             <div className="user-message-2">

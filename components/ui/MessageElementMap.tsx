@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import MessageElement from "@/components/ui/MessageElement";
 
-
-export default function MessageElementMap({messages}) {
+type Props = {
+    messages: object;
+};
+export default function MessageElementMap({messages}:Props) {
     const MessageList = () => {
         return (
             <div className="messageblock">
