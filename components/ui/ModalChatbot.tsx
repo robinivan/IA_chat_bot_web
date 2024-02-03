@@ -131,4 +131,5 @@ const ModalChatbot = ({isOpen, setIsOpen}: Props) => {
     );
 };
 
+// Exportation du composant ModalChatbot en tant que composant par défaut
 export default ModalChatbot;
