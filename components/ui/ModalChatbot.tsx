@@ -28,7 +28,9 @@ const ModalChatbot = ({isOpen, setIsOpen}: Props) => {
 
     }
     const requestMessage = async (message: any) => {
-        let url = 'https://ia-chat-bot-api.vercel.app/post-message';
+        let url_base='https://ia-chat-bot-api.vercel.app'
+        // console.log(url_base)
+        let url = url_base + '/query-openai';
         let headers = {
             'Accept': 'application/json',
         }
@@ -44,17 +46,27 @@ const ModalChatbot = ({isOpen, setIsOpen}: Props) => {
             res => {
                 console.log('post message');
                 console.log(res.data);
+                let temp = userMessages
+                temp.push({"User": "ChatBot", "Message": res.data.data})
+                setUserMessages(temp)
+                console.log(temp)
+                localStorage.setItem("exchange", JSON.stringify(temp));
+                setLoading(false)
             }
         ).catch(
             (error) => {
                 console.log('error to post an travel');
                 console.log(error)
+                setLoading(false)
+
             }
         )
     }
     const [userMessages, setUserMessages] = useState<any>(getMessagesFromLocal);
     const [question, setQuestion] = useState<any>(null);
     const [state, setState] = useState<any>(false)
+    const [loading, setLoading] = useState<any>(false);
+
 
     useEffect(() => {
         if (state) {
@@ -70,6 +82,7 @@ const ModalChatbot = ({isOpen, setIsOpen}: Props) => {
     }
     const sendMessage = () => {
         if (question) {
+            setLoading(true)
             let temp = userMessages
             temp.push({"User": "User", "Message": question})
             setUserMessages(temp)
@@ -92,7 +105,7 @@ const ModalChatbot = ({isOpen, setIsOpen}: Props) => {
             >
                 {/*<div className="bot-message">Bienvenue ! Posez-moi vos questions.</div>*/}
                 <div className="Modalwindowbody">
-                    <MessageElementMap messages={userMessages}/>
+                    <MessageElementMap messages={userMessages} loading={loading}/>
                     <div className="inputblock">
                         <Space.Compact style={{width: "100%"}}>
                             <Input

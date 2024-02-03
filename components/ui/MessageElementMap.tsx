@@ -7,8 +7,9 @@ interface message {
 }
 type Props = {
     messages: message[];
+    loading: any;
 };
-export default function MessageElementMap({messages}:Props) {
+export default function MessageElementMap({messages, loading}:Props) {
     const MessageList = () => {
         return (
             <div className="messageblock">
@@ -21,11 +22,37 @@ export default function MessageElementMap({messages}:Props) {
 
         )
     }
-    if (messages) {
-        return (<MessageList/>)
-    } else {
+    const MessageListLoad = () => {
         return (
-            <div className="messageblock"/>
+            <div className="messageblock">
+                {
+                    messages.map(userMessage => (
+                        <MessageElement message={userMessage}/>
+                    ))
+                }
+                <span className="loader"></span>
+            </div>
+
         )
     }
+    if (loading){
+        if (messages) {
+            return (<MessageListLoad/>)
+        } else {
+            return (
+                <div className="messageblock">
+                    <span className="loader"></span>
+                </div>
+            )
+        }
+    } else {
+        if (messages) {
+            return (<MessageList/>)
+        } else {
+            return (
+                <div className="messageblock"/>
+            )
+        }
+    }
+
 }
